@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>找回遺失的自己：從忙亂到安靜的力量</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/sky.min.css">
+
+    <!-- Import Zen Maru Gothic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- Import Ma Shan Zheng for footer style if needed, or stick to Zen Maru per request -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/plugin/highlight/monokai.min.css">
+
+    <style>
+        :root {
+            --r-main-font: 'Zen Maru Gothic', sans-serif;
+            --r-heading-font: 'Zen Maru Gothic', sans-serif;
+            --gradient-title: linear-gradient(45deg, #2b5876 0%, #4e4376 100%);
+            --gradient-text: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+        }
+
+        /* General Overrides */
+        .reveal {
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Zen Maru Gothic', sans-serif !important;
+            font-weight: 900 !important;
+        }
+
+        /* Gradient Text Class */
+        .gradient-text {
+            background: -webkit-linear-gradient(45deg, #2b5876, #4e4376);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Fallback for non-webkit */
+            color: #2b5876;
+        }
+
+        /* Text Shadow/Stroke Effect for Headings */
+        .reveal h2,
+        .reveal h3 {
+            color: #444;
+            /* Base color if gradient fails or for better contrast */
+        }
+
+        /* Specific Gradient Title Style */
+        .title-gradient {
+            background: linear-gradient(to right, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.8));
+        }
+
+        .text-stroke {
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                3px 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px !important;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 12px solid #7da7d9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .handwritten-footer {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-weight: 500;
+            font-size: 0.65em;
+            color: #555;
+            margin-top: 60px !important;
+            line-height: 1.8;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Navigation Buttons */
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: none;
+            /* Default hidden, JS will show */
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            text-decoration: none !important;
+            transition: all 0.3s;
+            border: 2px solid #555;
+        }
+
+        .home-button:hover {
+            transform: scale(1.1) rotate(-5deg);
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-button svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: #555;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .toc-link {
+            display: block;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            color: #444 !important;
+            text-decoration: none !important;
+            transition: all 0.3s;
+            font-weight: 700;
+            border-left: 5px solid transparent;
+        }
+
+        .toc-link:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-left: 5px solid #7da7d9;
+            transform: translateX(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Home Button -->
+    <!-- Home Button with Hand-drawn Style SVG -->
+    <a href="#/0" class="home-button" title="回到首頁">
+        <svg viewBox="0 0 24 24">
+            <!-- Sketchy house path -->
+            <path d="M3 10 L12 3 L21 10 V20 C21 21 20 22 19 22 H5 C4 22 3 21 3 20 V10 Z M9 22 V12 H15 V22" />
+        </svg>
+    </a>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section class="cover-slide"
+                data-background-gradient="linear-gradient(to bottom, #a1c4fd 0%, #c2e9fb 100%)">
+                <img src="assets/avatar_happy.png" class="avatar"
+                    style="width: 150px; height: 150px; margin-bottom: 20px !important;">
+
+                <h2 class="title-gradient" style="font-size: 2.8em; margin-bottom: 10px;">找回遺失的自己</h2>
+                <h3 class="gradient-text" style="font-size: 1.5em;">從忙亂到安靜的力量</h3>
+                <p class="subtitle" style="font-weight: 700; color: #555; margin-top: 20px;">
+                    在失落與重整中，肯定自我價值<br>
+                    <span style="font-size: 0.7em; opacity: 0.8;">— 小學生的關懷倫理學課程設計 —</span>
+                </p>
+
+                <div class="handwritten-footer" style="margin-top: 30px !important;">
+                    114-1 情意與道德課程研究<br>
+                    指導教師 方志華教授<br>
+                    學材職碩二 M11317120 林佩樺
+                </div>
+            </section>
+
+            <!-- Table of Contents -->
+            <section data-background-color="#f4f9fd">
+                <h2 class="text-stroke" style="color: #7da7d9;">課程導航</h2>
+                <div style="width: 80%; margin: 0 auto;">
+                    <a href="#/2" class="toc-link">🧩 Phase 1：情意的邂逅與身教示範</a>
+                    <a href="#/7" class="toc-link">🌱 Phase 2：實踐練習與真誠對話</a>
+                    <a href="#/11" class="toc-link">✨ Phase 3：道德理想的貞定</a>
+                </div>
+            </section>
+
+            <!-- PHASE 1 TITLE -->
+            <section data-background-color="#f0f8ff">
+                <h2 class="text-stroke" style="color: #7da7d9; letter-spacing: 4px;">PHASE 1</h2>
+                <h3 class="gradient-text">情意的邂逅與身教示範</h3>
+                <p>40 分鐘</p>
+            </section>
+
+            <!-- Slide 1.1: Story (Modeling) -->
+            <section>
+                <h3 class="title-gradient">1.1 老師的親身經歷</h3>
+
+                <!-- Video Embed -->
+                <div style="font-size: 0.8em; margin-bottom: 10px;">
+                    <a href="https://youtu.be/z9eRCFf_jXg?si=wLH2PBbtFkPgg25Q" target="_blank"
+                        style="color: #d9534f; font-weight: bold; text-decoration: none;">
+                        🎥 點此播放影片 (Youtube)
+                    </a>
+                </div>
+
+                <div class="container" style="align-items: flex-start;">
+                    <img src="assets/avatar_confused.png" class="avatar"
+                        style="width: 100px; height: 100px; margin-top: 0 !important;">
+                    <div class="text-left"
+                        style="font-size: 0.6em; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                        <ul class="story-list" style="margin:0;">
+                            <li class="fragment">🔑 <strong>早晨崩潰</strong>：鑰匙不見的內疚感</li>
+                            <li class="fragment">🏃‍♀️ <strong>極限多工</strong>：連滾帶爬的報名競賽</li>
+                            <li class="fragment">🌟 <strong>轉折滿足</strong>：融合教育座談 & 遇見恩師</li>
+                            <li class="fragment">🍂 <strong>再次失落</strong>：遺失各種「會照顧自己的物品」</li>
+                            <li class="fragment">🌙 <strong>自我對話</strong>：深夜低語與自製影片 (情緒降落)</li>
+                            <li class="fragment">🎁 <strong>失物回歸</strong>：隔天的圓足、隔週的續集、彩蛋</li>
+                            <li class="fragment highlight" style="color: #d9534f;">🌈 <strong>結局</strong>：慢下來，東西才願意回來
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 1.2: Dialogue -->
+            <section>
+                <h3 class="title-gradient text-stroke">1.2 接納情感</h3>
+                <img src="assets/avatar_sad.png" class="avatar">
+                <div class="quote-box">
+                    <p class="gradient-text" style="font-weight: 700;">「當東西不見時，我覺得自己很沒用...」</p>
+                </div>
+                <hr style="border: 0; border-top: 1px dashed #aaa; margin: 30px 0;">
+                <div class="fragment">
+                    <p style="font-weight: 700;">當你覺得很累時，你會允許自己犯錯嗎？<br>你會想把情緒「倒出來」嗎？</p>
+                </div>
+            </section>
+
+            <!-- Slide 1.3: Anchoring -->
+            <section data-background-color="#fff0f5">
+                <h3 class="title-gradient">1.3 情緒錨定</h3>
+                <img src="assets/avatar_thinking.png" class="avatar">
+                <p>在下課前...</p>
+                <div class="quote-box">
+                    <p style="font-size: 1.2em; font-weight: 900; color: #555;">請寫下或畫下，剛剛聽完故事後，<br>感受最深的一個 <u>情緒</u> 或
+                        <u>畫面</u>。
+                    </p>
+                </div>
+                <p><small>(中場休息：請保留這份感覺)</small></p>
+            </section>
+
+            <!-- PHASE 2 TITLE -->
+            <section data-background-color="#f0f8ff">
+                <h2 class="text-stroke" style="color: #7da7d9; letter-spacing: 4px;">PHASE 2</h2>
+                <h3 class="gradient-text">實踐練習與真誠對話</h3>
+                <p>25 分鐘</p>
+            </section>
+
+            <!-- Slide 2.0: Warm Up -->
+            <section>
+                <h3 class="title-gradient text-stroke">2.0 暖身：重建氛圍</h3>
+                <img src="assets/avatar_winking.png" class="avatar">
+                <p style="font-size: 1.2em; font-weight: 700;">剛剛你留下了什麼感覺？</p>
+                <p><small>邀請幾位同學分享，讓我們回到故事的情緒中。</small></p>
+            </section>
+
+            <!-- Slide 2.1: Practice -->
+            <section>
+                <h3 class="title-gradient">2.1 練習關懷</h3>
+                <div
+                    style="text-align: left; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px; border-radius: 15px; font-size: 0.8em; margin-bottom: 30px; border-left: 8px solid #f7c978;">
+                    <strong style="color: #d9534f;">道德兩難：餐具事件</strong><br>
+                    又累又餓，卻不敢開口要筷子，寧願多買一份水餃...
+                </div>
+                <div class="container">
+                    <div style="font-size: 0.7em;">
+                        <strong>角色 A：飢餓的你</strong><br>
+                        <img src="assets/avatar_sad.png" class="avatar" style="width: 100px; height: 100px;">
+                    </div>
+                    <div style="font-size: 0.7em;">
+                        <strong>角色 B：店員</strong><br>
+                        <img src="assets/avatar_thumbs_up.png" class="avatar" style="width: 100px; height: 100px;">
+                    </div>
+                </div>
+                <p class="fragment" style="font-size: 0.9em; color: #17b978; font-weight: 700; margin-top: 20px;">
+                    哪種作法既照顧自己又不麻煩別人？</p>
+            </section>
+
+            <!-- Slide 2.2: Tree Hole -->
+            <section>
+                <h3 class="title-gradient text-stroke">2.2 樹洞回饋活動</h3>
+                <p>老師分享了她的脆弱，現在換你。</p>
+                <div style="display: flex; gap: 30px; text-align: left; margin-top: 30px;">
+                    <div class="quote-box fragment" style="flex:1;">
+                        <h5 style="color: #7da7d9; font-weight: 900;">1. 共鳴</h5>
+                        <p>你最近「弄丟」了什麼？<br>(時間? 耐心? 快樂?)</p>
+                    </div>
+                    <div class="quote-box fragment" style="flex:1;">
+                        <h5 style="color: #7da7d9; font-weight: 900;">2. 建議</h5>
+                        <p>給老師一句話，<br>建議她如何「慢下來」。</p>
+                    </div>
+                </div>
+                <img src="assets/avatar_kissing.png" class="avatar" style="margin-top: 30px !important;">
+            </section>
+
+            <!-- PHASE 3 TITLE -->
+            <section data-background-color="#f0f8ff">
+                <h2 class="text-stroke" style="color: #7da7d9; letter-spacing: 4px;">PHASE 3</h2>
+                <h3 class="gradient-text">道德理想的貞定</h3>
+                <p>15 分鐘</p>
+            </section>
+
+            <!-- Slide 3.1 & 3.2: Conclusion -->
+            <section data-background-image="assets/self_care_compass_card.png" data-background-opacity="0.2">
+                <h3 class="title-gradient">3.1 & 3.2 肯定與承諾</h3>
+                <img src="assets/avatar_thumbs_up.png" class="avatar">
+                <div class="quote-box" style="margin-top: 30px;">
+                    <p style="font-size: 0.8em; margin-bottom: 20px;">師生共同歸納，設計「慢下來，找回自己」的卡片</p>
+                    <h2 class="title-gradient" style="font-size: 1.5em;">「在給予之前，<br>先滿足自己的需要。」</h2>
+                    <p style="margin-top: 20px; font-weight: 700; color: #555;">你所愛的，從未真正失去。</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide'
+        });
+
+        // Logic to show/hide Home button
+        Reveal.on('slidechanged', event => {
+            const homeBtn = document.querySelector('.home-button');
+            if (event.indexh === 0) {
+                homeBtn.style.display = 'none';
+            } else {
+                homeBtn.style.display = 'flex';
+            }
+        });
+
+        // Initial check
+        if (Reveal.getIndices().h === 0) {
+            document.querySelector('.home-button').style.display = 'none';
+        } else {
+            document.querySelector('.home-button').style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>
